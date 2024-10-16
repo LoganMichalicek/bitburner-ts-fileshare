@@ -1,10 +1,11 @@
 import { NS } from "@ns";
 
 export async function main(ns: NS) {
+  // Just like "weaken", but loops forever.
   const target = ns.args[0] as string;
   const threads = ns.args[1] as number;
-  const delay = ns.args[2] as number;
 
-  await ns.weaken(target, { threads, stock: true, additionalMsec: delay | 0 });
-  ns.exit();
+  for (;;) {
+    await ns.weaken(target, { threads, stock: true });
+  }
 }
